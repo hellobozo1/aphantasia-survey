@@ -348,9 +348,11 @@ function AdminPage() {
 }
 
 function App() {
-  if (window.location.pathname === "/admin") {
-    return <AdminPage />;
-  }
+  const path = window.location.pathname.replace(/\/+$/, "");
+
+if (path === "/admin") {
+  return <AdminPage />;
+}
 
   return <SurveyPage />;
 }
