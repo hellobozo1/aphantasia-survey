@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>My Lectures</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500&display=swap">
+<style>
+:root{--bg:#e9e6df;--sheet:#fffdf8;--ink:#1f2430;--mute:#6b7280;--line:#e5e0d4;--an:#c2410c;--an-s:#fff0e6;--bi:#0f766e;--bi-s:#e4f5f2;--ph:#4338ca;--ph-s:#ebeafd;--shadow:0 10px 40px rgba(0,0,0,.18);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161b;--sheet:#1d2027;--ink:#eceae4;--mute:#9aa0ac;--line:#2e323c;--an:#fb923c;--an-s:#3a2418;--bi:#2dd4bf;--bi-s:#13322f;--ph:#a5a8ff;--ph-s:#25264a;--shadow:0 10px 40px rgba(0,0,0,.5)}}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);font-family:"Inter","Segoe UI",system-ui,sans-serif;color:var(--ink);padding:12px 0 70px}
+body.cv #lw,body:not(.cv) #cal{display:none}
+.wp{margin:0 auto 14px;overflow:hidden}
+.sheet{width:297mm;height:210mm;background:var(--sheet);box-shadow:var(--shadow);padding:9mm 10mm 7mm;display:flex;flex-direction:column;transform-origin:top left;border-radius:2px}
+header{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1.5px solid var(--ink);padding-bottom:3mm;margin-bottom:4mm}
+h1{font-family:"Playfair Display",Georgia,serif;font-size:25pt;margin:0;letter-spacing:-.5px;line-height:1}
+.an{--c:var(--an);--s:var(--an-s)}.bi{--c:var(--bi);--s:var(--bi-s)}.ph{--c:var(--ph);--s:var(--ph-s)}.ex{--c:#b91c1c;--s:#fee2e2}
+.cols{flex:1;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:minmax(0,1fr);gap:5mm;min-height:0}
+.col{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:3mm;overflow:hidden;min-height:0}
+.col h2{margin:0;padding:3mm 4mm;color:#fff;display:flex;justify-content:space-between;align-items:center;font-size:12.5pt;background:var(--c)}
+.pm{display:flex;gap:1.5mm}
+.pm button{width:5.4mm;height:5.4mm;border-radius:50%;border:0;background:rgba(255,255,255,.25);color:#fff;font:700 11pt/1 system-ui;cursor:pointer;padding:0}
+.body{min-height:0;padding:1.5mm 3mm 2mm;flex:1;display:flex;flex-direction:column}
+.hd{display:flex;justify-content:flex-end;padding:1.2mm 0 .2mm;border-bottom:.6pt solid var(--c)}
+.grp{font-size:6.3pt;text-transform:uppercase;letter-spacing:.14em;font-weight:700;margin:1.8mm 0 .6mm;color:var(--c)}
+.row{display:flex;align-items:center;gap:2mm;flex:1 1 auto;padding:.4mm 0;min-height:0;border-bottom:.5px dotted var(--line);font-size:7.1pt;line-height:1.2}
+.row:last-child{border-bottom:0}
+.row .t{cursor:pointer;flex:0 1 auto;min-width:0;white-space:nowrap;overflow:hidden;font-family:"Roboto Condensed","Arial Narrow",sans-serif;font-size:7.1pt}
+.t:hover{color:var(--c);text-decoration:underline}
+.row .sp{flex:1}
+.ni{display:none;font-size:6.5pt;margin-left:.6mm}
+.tag{flex:none;min-width:9.5mm;text-align:center;background:var(--s);color:var(--c);font-weight:700;font-size:6pt;padding:.5mm 0;border-radius:1.2mm}
+.tag.o{min-width:12.5mm;text-transform:uppercase;font-size:5.4pt;background:var(--c);color:var(--sheet)}
+.chks{flex:none;display:flex;align-self:stretch}
+.ck{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3mm;width:4.8mm;cursor:pointer}
+.ck em{font-style:normal;font-size:4.8pt;font-weight:600;line-height:1}
+.hd .ck{cursor:default}.hd .ck em{font-size:5.6pt;color:var(--c)}
+.ck b{position:relative;width:3mm;height:3mm;border:.7pt solid var(--c);border-radius:.7mm;background:var(--sheet)}
+.ck b.on{background:var(--c)}
+.ck b.on::after{content:"";position:absolute;left:.85mm;top:.1mm;width:.9mm;height:1.7mm;border:solid #fff;border-width:0 .45mm .45mm 0;transform:rotate(45deg)}
+.lg{display:flex;gap:5mm;font-size:8pt;color:var(--mute)}.lg i{display:inline-block;width:2.6mm;height:2.6mm;border-radius:50%;background:var(--c);margin-right:1.5mm;vertical-align:-.3mm}
+.cg{flex:1;display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--line);border:1px solid var(--line);min-height:0}
+.dw{background:var(--ink);color:var(--sheet);font-size:7pt;font-weight:600;text-align:center;padding:1.2mm 0;letter-spacing:.1em;text-transform:uppercase}
+.dc{background:var(--sheet);padding:1.2mm;overflow:hidden;min-height:0}
+.dc.off{background:var(--bg);opacity:.5}.dc.we{background:var(--bg)}
+.dn{font:600 8.5pt Georgia,serif;color:var(--mute);margin-bottom:.8mm}
+.ci{border-left:1.1mm solid var(--c);background:var(--s);padding:.6mm 1.2mm;margin-bottom:.8mm;border-radius:0 .8mm .8mm 0;font:500 6.2pt/1.15 "Roboto Condensed","Arial Narrow",sans-serif;cursor:pointer}
+.ci.ex{color:#7f1d1d;font-weight:700}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ci.ex{color:#ffe4e6;--s:#651b25;--c:#fda4af}}
+.ci:hover{filter:brightness(.95)}
+.chip{margin-top:2.5mm;display:flex;gap:2mm;align-items:center;font-size:7pt;color:var(--mute)}.chip .ci{margin:0}
+.fab{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));display:flex;gap:8px}
+.fab button{background:var(--ink);color:var(--sheet);border:0;padding:10px 16px;border-radius:30px;font:600 13px system-ui;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+#pop{position:fixed;inset:0;background:rgba(0,0,0,.4);display:none;align-items:center;justify-content:center;z-index:50;padding:16px}
+#pop.show{display:flex}
+.card{background:var(--sheet);color:var(--ink);border-radius:14px;padding:18px 20px 20px;width:min(380px,100%);border-top:6px solid var(--c);box-shadow:0 18px 50px rgba(0,0,0,.4)}
+.card .sub{font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:700;color:var(--c)}
+.card h3{margin:6px 0 14px;font:600 18px/1.25 Georgia,serif}
+.card .info{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:14px;margin-bottom:14px}.card .info span{color:var(--mute)}
+.card textarea{width:100%;height:90px;resize:vertical;border:1px solid var(--line);border-radius:8px;padding:8px 10px;background:transparent;color:var(--ink);font:14px system-ui}
+.card .lbl{font-size:12px;color:var(--mute);margin-bottom:4px;font-weight:600}
+.card .x{display:block;margin:12px 0 0 auto;background:var(--c);color:var(--sheet);border:0;border-radius:20px;padding:7px 18px;font:600 13px system-ui;cursor:pointer}
+@page{size:A4 landscape;margin:0}
+@media print{html,body{background:#fff!important;padding:0!important}.wp{width:297mm!important;height:210mm!important;margin:0}.wp+.wp,#cal .wp+.wp{break-before:page}.sheet{transform:none!important;box-shadow:none;border-radius:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}.fab,#pop,.pm{display:none!important}}
+</style>
+</head>
+<body>
+<div class="wp" id="lw"><div class="sheet"><header><h1>FB1 Endterm Content</h1></header><div class="cols" id="cols"></div></div></div>
+<div id="cal"></div>
+<div id="pop"><div class="card" id="card"></div></div>
+<div class="fab"><button id="tv">Calendar view</button><button onclick="window.print()">Print / Save PDF</button></div>
+<script>
+var D=[
+{k:'an',n:'Anatomy',g:[
+['Lectures',[['Central Nervous System','L19'],['Peripheral Nervous System','L20'],['Autonomic Nervous System','L21'],['Peripheral Distribution of the Cranial Nerves','L22'],['Nervous Tissue I','L23'],['Nervous Tissue II','L24'],['Anatomy of the Thorax','L25'],['Anatomical Organization of Abdomen','L26'],['Anatomical Organization of Pelvis','L27'],['Integumentary System','L28'],['Face and Scalp','L29'],['Anatomy of Skull and Cranial Cavity','L30'],['Triangles of the Neck','L31']]],
+['Practicals',[['Central Nervous System'],['Peripheral Nervous System'],['Nervous Tissue'],['Anatomy of the Thorax'],['Anatomical Organization of Abdomen'],['Anatomical Organization of Pelvis'],['Microscopic Anatomy of Skin and Its Appendages'],['Scalp & Face'],['Anatomy of Skull and Cranial Cavity'],['Triangles of the Neck']]]]},
+{k:'bi',n:'Biochemistry',g:[
+['Lectures',[['Amino Acid Metabolism','L21'],['Amino Acid Catabolism and Nitrogen Disposal','L22'],['Maintaining Blood Sugar Using Different Substrates; Gluconeogenesis','L23'],['Nucleotide Metabolism and Roles of Purines in Health','L24'],['Free Radicals: Production, Damage and Control','L25'],['How Do We Get Fat? Fatty Acid Synthesis and Storage as Triacylglycerol','L26'],['How Do Humans Synthesize Essential Polyunsaturated Fatty Acids?','L27'],['Fatty Acid Oxidation & Energy Production','L28'],['Cholesterol','L29'],['Lipoproteins','L30'],['Mobilization of Fuels and Formation and Utilization of Ketone Bodies','L31'],['Diversified Roles of Lipids: Perspective','L32'],['Introduction to Human Nutrition','L33'],['Dietary Macronutrients: Proteins and Carbohydrates','L34'],['Dietary Lipids and Energy Utilization','L35'],['Micronutrients: The Vitamins','L36'],['Micronutrients: Minerals and Trace Elements','L37']]],
+['Seminars',[['Health Problems of Dietary Fats'],['Metabolic Consequences of Dietary Restriction'],['Biochemistry of Nutritional Supplements']]],
+['Labs',[['Applications of Enzyme Methods for Determination of Cholesterol'],['Blood Glucose and Oral Glucose Tolerance Test']]],
+['Learning Topic',[['Key Molecular Features That Determine Properties of Cell Membranes']]]]},
+{k:'ph',n:'Physiology',g:[
+['Lectures',[['Cell Junctions and Junctional Proteins','L14'],['Cellular Microfilaments: Actin and Myosin','L15'],['Microtubules and Intermediary Filaments','L16'],['Skeletal Muscles','L17'],['Contraction and Relaxation of Cardiac Muscles','L18'],['Contraction and Relaxation of Vascular Muscle','L19'],['Epithelial Transport','L20'],['Body Organ Systems: The Endocrine System','L21'],['Principles of Hemodynamics','L22'],['Cardiovascular Circuitry','L23'],['Basics of Synaptic Plasticity','L24'],['Introduction to Reflex','L25'],['Autonomic Nervous System','L26'],['Buffers in the Body Fluids','L27'],['Principles of Acid Base Homeostasis','L28'],['Oxygen and Carbon Dioxide Transport in Biological Fluids','L29'],['Temperature Regulation I','L30'],['Temperature Regulation II','L31'],['Basal Metabolism and Basal Metabolic Rate','L32'],['Control of Food Intake and Body Weight','L33']]],
+['Seminars',[['Acid-Base Balance and Simple Acid-Base Disorder'],['Body Weight']]]]}
+];
+var RAW={an:{Lectures:['Sun, 8 Nov|11:10–12:00','Mon, 9 Nov|10:10–11:00','Tue, 10 Nov|11:10–12:00','Wed, 11 Nov|11:10–12:00','Mon, 16 Nov|10:10–11:00','Tue, 17 Nov|11:10–12:00','Sun, 22 Nov|11:10–12:00','Mon, 23 Nov|10:10–11:00','Tue, 24 Nov|10:10–11:00','Mon, 30 Nov|13:00–13:50','Mon, 7 Dec|11:10–12:00','Thu, 10 Dec|13:00–13:50','Mon, 14 Dec|11:10–12:00'],
+Practicals:['Sun, 8 Nov','Wed, 11 Nov','Tue, 17 Nov','Sun, 22 Nov','Wed, 25 Nov','Sun, 29 Nov','Tue, 1 Dec','Wed, 9 Dec','Sun, 13 Dec','Tue, 15 Dec'].map(function(d){return d+'|13:00–15:50'})},
+bi:{Lectures:['Sun, 8 Nov|10:10–11:00','Mon, 9 Nov|11:10–12:00','Tue, 10 Nov|10:10–11:00','Wed, 11 Nov|10:10–11:00','Thu, 12 Nov|11:10–12:00','Sun, 15 Nov|13:00–13:50','Mon, 16 Nov|11:10–12:00','Tue, 17 Nov|10:10–11:00','Wed, 18 Nov|10:10–11:00','Tue, 24 Nov|11:10–12:00','Wed, 25 Nov|10:10–11:00','Thu, 26 Nov|10:10–11:00','Mon, 30 Nov|10:10–11:00','Wed, 2 Dec|10:10–11:00','Sun, 6 Dec|13:00–13:50','Tue, 8 Dec|11:10–12:00','Wed, 9 Dec|10:10–11:00'],
+Seminars:['Tue, 1 Dec|11:10–12:00','Wed, 2 Dec|11:10–12:00','Tue, 15 Dec|10:10–11:00'],
+Labs:['Thu, 19 Nov|10:10–12:00 (group 1)<br>14:00–15:50 (group 2)','Thu, 3 Dec|10:10–12:00 (group 1)<br>13:00–14:50 (group 2)'],
+'Learning Topic':['Week 12, 22–26 Nov|']},
+ph:{Lectures:['Thu, 12 Nov|10:10–11:00','Sun, 15 Nov|11:10–12:00','Wed, 18 Nov|11:10–12:00','Sun, 22 Nov|10:10–11:00','Mon, 23 Nov|11:10–12:00','Wed, 25 Nov|11:10–12:00','Thu, 26 Nov|11:10–12:00','Sun, 29 Nov|10:10–11:00','Mon, 30 Nov|11:10–12:00','Tue, 1 Dec|10:10–11:00','Sun, 6 Dec|10:10–11:00','Mon, 7 Dec|10:10–11:00','Tue, 8 Dec|10:10–11:00','Thu, 10 Dec|10:10–11:00','Thu, 10 Dec|11:10–12:00','Mon, 14 Dec|10:10–11:00','Tue, 15 Dec|11:10–12:00','Wed, 16 Dec|10:10–11:00','Thu, 17 Dec|10:10–11:00','Thu, 17 Dec|11:10–12:00'],
+Seminars:['Sun, 13 Dec|10:10–11:00','Thu, 17 Dec|13:00–13:50']}};
+var tagOf={'Practicals':'Practical','Seminars':'Seminar','Labs':'Lab','Learning Topic':'Topic'};
+var SUB={an:'Anatomy',bi:'Biochemistry',ph:'Physiology',ex:'Exams'};
+var SCHEDULE={},ALL=[];
+D.forEach(function(s){s.g.forEach(function(g){g[1].forEach(function(i,x){var r=RAW[s.k][g[0]][x].split('|'),id=s.k+'|'+g[0]+'|'+i[0]+'|'+(i[1]||'');SCHEDULE[id]={date:r[0],time:r[1]};ALL.push({id:id,k:s.k,t:i[0]})})})});
+// Exams belong to the calendar only; they are not added to the study-list data.
+var EXAMS=[
+ ['English Midterm Exam','Sun, 8 Nov','08:00–09:50'],
+ ['English Final Exam','Sun, 20 Dec','08:00–09:50'],
+ ['OSPE Exam','Wed, 23 Dec','10:30–12:00'],
+ ['FB1 Endterm','Wed, 30 Dec','09:00–11:30']
+];
+EXAMS.forEach(function(e){var id='ex|Exams|'+e[0]+'|Exam';SCHEDULE[id]={date:e[1]+', 2026',time:e[2]}});
+function load(k,d){try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}}
+function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+var st=load('fb1checks',{}),notes=load('fb1notes',{}),cnt=load('fb1cnt',{an:3,bi:3,ph:3});
+var cols=document.getElementById('cols'),pop=document.getElementById('pop'),card=document.getElementById('card'),cur='';
+function ord(n){return n+(n===1?'st':n===2?'nd':n===3?'rd':'th')}
+function render(){
+ var out='';
+ D.forEach(function(s){
+  var n=cnt[s.k],h='<div class="hd"><span></span><span class="chks">';
+  for(var j=1;j<=n;j++)h+='<span class="ck"><em>'+ord(j)+'</em></span>';
+  h+='</span></div>';
+  s.g.forEach(function(g){
+   h+='<div class="grp">'+g[0]+' ('+g[1].length+')</div>';
+   g[1].forEach(function(i){
+    var id=s.k+'|'+g[0]+'|'+i[0]+'|'+(i[1]||'');
+    h+='<div class="row" data-id="'+id+'"><span class="tag'+(i[1]?'':' o')+'">'+(i[1]||tagOf[g[0]])+'</span><span class="t">'+i[0]+'</span><span class="ni">📝</span><span class="sp"></span><span class="chks">';
+    for(var j=1;j<=n;j++)h+='<span class="ck"><b data-n="'+j+'"'+(st[id+'#'+j]?' class="on"':'')+'></b></span>';
+    h+='</span></div>';
+   });
+  });
+  out+='<section class="col '+s.k+'"><h2>'+s.n+'<span class="pm"><button data-k="'+s.k+'" data-d="-1" title="Remove last column">−</button><button data-k="'+s.k+'" data-d="1" title="Add a column">+</button></span></h2><div class="body">'+h+'</div></section>';
+ });
+ cols.innerHTML=out;updateIcons();shrink();
+}
+function shrink(){document.querySelectorAll('.t').forEach(function(e){if(!e.clientWidth)return;var f=7.1;e.style.fontSize=f+'pt';while(e.scrollWidth>e.clientWidth+0.5&&f>4.6){f-=.1;e.style.fontSize=f+'pt'}})}
+function updateIcons(){document.querySelectorAll('[data-id]').forEach(function(el){var n=el.querySelector('.ni');if(n)n.style.display=notes[el.dataset.id]?'inline':'none'})}
+function buildCal(){
+ var ev=[],wk=null;
+ ALL.forEach(function(a){var d=SCHEDULE[a.id];if(d.date.indexOf('Week')===0){wk=a;return}var p=d.date.split(' ');ev.push({id:a.id,k:a.k,t:a.t,m:p[2]==='Nov'?10:11,d:+p[1],tm:d.time})});
+ EXAMS.forEach(function(e){var p=e[1].split(' ');ev.push({id:'ex|Exams|'+e[0]+'|Exam',k:'ex',t:e[0],m:p[2]==='Nov'?10:11,d:+p[1],tm:e[2]})});
+ var names=['November','December'],h='',lg='<div class="lg"><span class="an"><i></i>Anatomy</span><span class="bi"><i></i>Biochemistry</span><span class="ph"><i></i>Physiology</span><span class="ex"><i></i>Exams</span></div>';
+ [10,11].forEach(function(m){
+  var first=new Date(2026,m,1).getDay(),days=new Date(2026,m+1,0).getDate(),rows=Math.ceil((first+days)/7),g='';
+  ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(function(w){g+='<div class="dw">'+w+'</div>'});
+  for(var c=0;c<rows*7;c++){
+   var dn=c-first+1;
+   if(dn<1||dn>days){g+='<div class="dc off"></div>';continue}
+   var it=ev.filter(function(e){return e.m===m&&e.d===dn}).sort(function(a,b){return a.tm.localeCompare(b.tm)});
+   g+='<div class="dc'+(c%7>4?' we':'')+'"><div class="dn">'+dn+'</div>'+it.map(function(e){return '<div class="ci '+e.k+'" data-id="'+e.id+'">'+e.t+'<span class="ni">📝</span></div>'}).join('')+'</div>';
+  }
+  var chip=(m===10&&wk)?'<div class="chip">Learning topic, Week 12 (22–26 Nov): <div class="ci bi" data-id="'+wk.id+'">'+wk.t+'<span class="ni">📝</span></div></div>':'';
+  h+='<div class="wp"><div class="sheet"><header><h1>'+names[m-10]+' 2026</h1>'+lg+'</header><div class="cg" style="grid-template-rows:auto repeat('+rows+',1fr)">'+g+'</div>'+chip+'</div></div>';
+ });
+ document.getElementById('cal').innerHTML=h;
+}
+function openPop(id){
+ cur=id;var p=id.split('|'),d=SCHEDULE[id],rows='';
+ rows+='<span>Date</span><div>'+d.date+'</div>';if(d.time)rows+='<span>Time</span><div>'+d.time+'</div>';
+ card.className='card '+p[0];
+ card.innerHTML='<div class="sub">'+SUB[p[0]]+' · '+(p[3]||tagOf[p[1]])+'</div><h3>'+p[2]+'</h3><div class="info">'+rows+'</div><div class="lbl">Notes</div><textarea id="note" placeholder="Write a note…"></textarea><button class="x" onclick="closePop()">Close</button>';
+ var ta=document.getElementById('note');ta.value=notes[id]||'';
+ ta.oninput=function(){if(ta.value.trim())notes[cur]=ta.value;else delete notes[cur];save('fb1notes',notes)};
+ pop.classList.add('show');
+}
+function closePop(){pop.classList.remove('show');updateIcons()}
+cols.addEventListener('click',function(e){
+ var pm=e.target.closest('.pm button');
+ if(pm){var k=pm.dataset.k;cnt[k]=Math.max(1,Math.min(8,cnt[k]+ +pm.dataset.d));save('fb1cnt',cnt);render();fit();return}
+ var r=e.target.closest('.row');if(!r)return;
+ var ck=e.target.closest('.ck');
+ if(ck){var b=ck.querySelector('b');if(!b)return;b.classList.toggle('on');var key=r.dataset.id+'#'+b.dataset.n;if(b.classList.contains('on'))st[key]=1;else delete st[key];save('fb1checks',st);return}
+ if(e.target.closest('.t')||e.target.closest('.ni'))openPop(r.dataset.id);
+});
+document.getElementById('cal').addEventListener('click',function(e){var c=e.target.closest('.ci');if(c)openPop(c.dataset.id)});
+pop.addEventListener('click',function(e){if(e.target===pop)closePop()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closePop()});
+var tv=document.getElementById('tv');
+tv.onclick=function(){var c=document.body.classList.toggle('cv');tv.textContent=c?'List view':'Calendar view';fit();if(!c)shrink()};
+function fit(){document.querySelectorAll('.wp').forEach(function(w){var s=w.firstElementChild;s.style.transform='none';var W=s.offsetWidth,H=s.offsetHeight;if(!W)return;var k=Math.min(1,(window.innerWidth-16)/W);s.style.transform='scale('+k+')';w.style.width=(W*k)+'px';w.style.height=(H*k)+'px'})}
+window.addEventListener('resize',fit);
+window.addEventListener('beforeprint',function(){document.querySelectorAll('.sheet').forEach(function(s){s.style.transform='none'})});
+window.addEventListener('afterprint',fit);
+render();buildCal();updateIcons();fit();
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(shrink);
+</script>
+</body>
+</html>
