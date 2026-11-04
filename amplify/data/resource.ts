@@ -1,6 +1,8 @@
+
 import { a, defineData, type ClientSchema } from "@aws-amplify/backend";
 
 const schema = a.schema({
+  // Existing Aphantasia Survey database
   Response: a
     .model({
       level: a.integer().required(),
@@ -12,6 +14,17 @@ const schema = a.schema({
 
       // Only members of the Admin group can see or delete responses.
       allow.group("Admin").to(["read", "delete"]),
+    ]),
+
+  // Shared FB1 Lectures Calendar storage
+  LectureProgress: a
+    .model({
+      itemId: a.string().required(),
+      value: a.string().required(),
+    })
+    .authorization((allow) => [
+      // All visitors can read and modify shared progress and notes.
+      allow.guest().to(["create", "read", "update", "delete"]),
     ]),
 });
 
