@@ -107,7 +107,10 @@ var EXAMS=[
 EXAMS.forEach(function(e){var id='ex|Exams|'+e[0]+'|Exam';SCHEDULE[id]={date:e[1]+', 2026',time:e[2]}});
 function load(k,d){try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}}
 function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
-var st=load('fb1checks',{}),notes=load('fb1notes',{}),cnt=load('fb1cnt',{an:3,bi:3,ph:3});
+var st = {};
+var notes = {};
+var cnt = load('fb1cnt', {an:3,bi:3,ph:3});
+var cloudReady = false;
 var cols=document.getElementById('cols'),pop=document.getElementById('pop'),card=document.getElementById('card'),cur='';
 function ord(n){return n+(n===1?'st':n===2?'nd':n===3?'rd':'th')}
 function render(){
@@ -187,6 +190,10 @@ ta.oninput = function() {
 }
 function closePop(){pop.classList.remove('show');updateIcons()}
 cols.addEventListener('click',function(e){
+  if (!cloudReady) {
+    alert('Shared data is still loading. Please try again shortly.');
+    return;
+  }
  var pm=e.target.closest('.pm button');
  if(pm){var k=pm.dataset.k;cnt[k]=Math.max(1,Math.min(8,cnt[k]+ +pm.dataset.d));save('fb1cnt',cnt);render();fit();return}
  var r=e.target.closest('.row');if(!r)return;
@@ -222,7 +229,17 @@ if (ck) {
 
  if(e.target.closest('.t')||e.target.closest('.ni'))openPop(r.dataset.id);
 });
-document.getElementById('cal').addEventListener('click',function(e){var c=e.target.closest('.ci');if(c)openPop(c.dataset.id)});
+document.getElementById('cal').addEventListener('click', function(e) {
+  var c = e.target.closest('.ci');
+  if (!c) return;
+
+  if (!cloudReady) {
+    alert('Shared data is still loading. Please try again shortly.');
+    return;
+  }
+
+  openPop(c.dataset.id);
+});
 pop.addEventListener('click',function(e){if(e.target===pop)closePop()});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closePop()});
 var tv=document.getElementById('tv');
@@ -233,6 +250,7 @@ window.addEventListener('beforeprint',function(){document.querySelectorAll('.she
 window.addEventListener('afterprint',fit);
 
 window.addEventListener('lecture-cloud-ready', function(e) {
+  cloudReady = true;
   var shared = e.detail || {};
 
   // Apply shared checkbox and note values.
