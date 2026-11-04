@@ -156,7 +156,33 @@ function openPop(id){
  card.className='card '+p[0];
  card.innerHTML='<div class="sub">'+SUB[p[0]]+' · '+(p[3]||tagOf[p[1]])+'</div><h3>'+p[2]+'</h3><div class="info">'+rows+'</div><div class="lbl">Notes</div><textarea id="note" placeholder="Write a note…"></textarea><button class="x" onclick="closePop()">Close</button>';
  var ta=document.getElementById('note');ta.value=notes[id]||'';
- ta.oninput=function(){if(ta.value.trim())notes[cur]=ta.value;else delete notes[cur];save('fb1notes',notes)};
+ var noteTimer;
+
+ta.oninput = function() {
+  var id = cur;
+  var value = ta.value;
+
+  if (value.trim()) {
+    notes[id] = value;
+  } else {
+    delete notes[id];
+  }
+
+  save('fb1notes', notes);
+
+  // Save to AWS after typing stops for 700ms.
+  clearTimeout(noteTimer);
+
+  noteTimer = setTimeout(function() {
+    if (window.lectureCloud) {
+      window.lectureCloud.save('note:' + id, value)
+        .catch(function(error) {
+          console.error('Failed to save shared note:', error);
+          alert('Could not save note to AWS. Please try again.');
+        });
+    }
+  }, 700);
+};
  pop.classList.add('show');
 }
 function closePop(){pop.classList.remove('show');updateIcons()}
@@ -165,7 +191,35 @@ cols.addEventListener('click',function(e){
  if(pm){var k=pm.dataset.k;cnt[k]=Math.max(1,Math.min(8,cnt[k]+ +pm.dataset.d));save('fb1cnt',cnt);render();fit();return}
  var r=e.target.closest('.row');if(!r)return;
  var ck=e.target.closest('.ck');
- if(ck){var b=ck.querySelector('b');if(!b)return;b.classList.toggle('on');var key=r.dataset.id+'#'+b.dataset.n;if(b.classList.contains('on'))st[key]=1;else delete st[key];save('fb1checks',st);return}
+ 
+if (ck) {
+  var b = ck.querySelector('b');
+  if (!b) return;
+
+  b.classList.toggle('on');
+
+  var key = r.dataset.id + '#' + b.dataset.n;
+  var checked = b.classList.contains('on');
+
+  if (checked) {
+    st[key] = 1;
+  } else {
+    delete st[key];
+  }
+
+  save('fb1checks', st);
+
+  if (window.lectureCloud) {
+    window.lectureCloud.save('check:' + key, checked ? '1' : '0')
+      .catch(function(error) {
+        console.error('Failed to save shared checkbox:', error);
+        alert('Could not save checkbox to AWS. Please try again.');
+      });
+  }
+
+  return;
+}
+
  if(e.target.closest('.t')||e.target.closest('.ni'))openPop(r.dataset.id);
 });
 document.getElementById('cal').addEventListener('click',function(e){var c=e.target.closest('.ci');if(c)openPop(c.dataset.id)});
@@ -177,8 +231,41 @@ function fit(){document.querySelectorAll('.wp').forEach(function(w){var s=w.firs
 window.addEventListener('resize',fit);
 window.addEventListener('beforeprint',function(){document.querySelectorAll('.sheet').forEach(function(s){s.style.transform='none'})});
 window.addEventListener('afterprint',fit);
+
+window.addEventListener('lecture-cloud-ready', function(e) {
+  var shared = e.detail || {};
+
+  // Apply shared checkbox and note values.
+  Object.keys(shared).forEach(function(key) {
+    if (key.startsWith('check:')) {
+      var id = key.slice(6);
+      if (shared[key] === '1') {
+        st[id] = 1;
+      } else {
+        delete st[id];
+      }
+    }
+
+    if (key.startsWith('note:')) {
+      var id = key.slice(5);
+      if (shared[key]) {
+        notes[id] = shared[key];
+      } else {
+        delete notes[id];
+      }
+    }
+  });
+
+  render();
+  updateIcons();
+  fit();
+
+  console.log('Shared lecture progress applied.');
+});
+
 render();buildCal();updateIcons();fit();
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(shrink);
 </script>
+<script type="module" src="/src/lectures-sync.js"></script>
 </body>
 </html>
